@@ -6,7 +6,7 @@ export default {
         { title: "Home", to: "/", icon: "mdi-home" },
         { title: "Estudantes", to: "/students", icon: "mdi-account-box" },
       ],
-    //   logo: require("../../assets/images/logo.png"),
+      logo: require("../../assets/logotipo1.png"),
       drawer: false,
       group: null,
     };

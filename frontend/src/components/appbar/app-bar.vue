@@ -1,18 +1,16 @@
 <template>
   <div>
-    <v-app-bar color="deep-purple accent-4">
+    <v-app-bar color="primary accent-4">
       <div class="d-flex">
         <v-img
           alt="Logo"
           contain
-          src="logo"
+          :src="logo"
           transition="scale-transition"
-          width="50"
+          width="200"
         />
-        <v-app-bar-nav-icon @click.stop="drawer = !drawer">
-        </v-app-bar-nav-icon>
       </div>
-      <v-toolbar-title class="font-white bold">
+      <v-toolbar-title class="font-white bold ps-2">
         Gestor de Projetos
       </v-toolbar-title>
     </v-app-bar>
