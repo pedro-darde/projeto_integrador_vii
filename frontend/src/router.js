@@ -2,6 +2,7 @@ import VueRouter from "vue-router";
 import Vue from "vue";
 import Home from "./pages/Home.vue";
 import Login from "./pages/Login.vue";
+import ProjectList from './pages/project/List.vue'
 
 const routes = [
   {
@@ -15,6 +16,12 @@ const routes = [
     name: "login",
     component: Login,
     meta: { title: "Login" },
+  },
+  {
+    path: "/projetos",
+    name: "projetos",
+    component: ProjectList,
+    meta: { title: "Projetos - Listagem" },
   },
 ];
 

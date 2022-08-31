@@ -11,6 +11,11 @@ export default {
       group: null,
     };
   },
+  methods: {
+    goToProjetos() {
+      this.$router.push("/projetos");
+    },
+  },
   watch: {
     group() {
       this.drawer = false;

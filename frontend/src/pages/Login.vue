@@ -1,9 +1,16 @@
 <template>
-  <login> Login </login>
+  <login @handleLogin="login"> Login </login>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    login(payload) {
+      localStorage.setItem('token', JSON.stringify(payload))
+      this.$router.push("/")
+    },
+  },
+};
 </script>
 
 <style>

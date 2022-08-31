@@ -6,7 +6,6 @@
 import isLoggedIn from "../helpers/isLoggedIn";
 export default {
   mounted() {
-    console.log('aq')
     if (!isLoggedIn()) this.$router.push("/login");
   },
 };

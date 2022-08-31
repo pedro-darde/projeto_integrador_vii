@@ -10,9 +10,12 @@
           width="200"
         />
       </div>
-      <v-toolbar-title class="font-white bold ps-2">
+      <v-toolbar-title class="font-white bold ps-2 text-center">
         Gestor de Projetos
       </v-toolbar-title>
+      <v-spacer></v-spacer>
+
+      <v-btn color="primary" @click="goToProjetos"> Projetos </v-btn>
     </v-app-bar>
 
     <v-navigation-drawer
