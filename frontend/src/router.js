@@ -3,7 +3,7 @@ import Vue from "vue";
 import Home from "./pages/Home.vue";
 import Login from "./pages/Login.vue";
 import ProjectList from './pages/project/List.vue'
-
+import ProjectCreate from './pages/project/Create.vue'
 const routes = [
   {
     path: "/",
@@ -22,6 +22,12 @@ const routes = [
     name: "projetos",
     component: ProjectList,
     meta: { title: "Projetos - Listagem" },
+  },
+  {
+    path: "/projetos/criar",
+    name: "projetos-criar",
+    component: ProjectCreate,
+    meta: { title: "Projetos - Criar" },
   },
 ];
 

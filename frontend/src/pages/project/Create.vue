@@ -1,8 +1,8 @@
 <template>
   <v-container fluid class="d-flex flex-column">
-    <h1 class="text-center p-4">Projetos</h1>
+    <h1 class="text-center p-4">Criar Projeto</h1>
     <v-divider></v-divider>
-    <project-list></project-list>
+    <project-create></project-create>
   </v-container>
 </template>
 

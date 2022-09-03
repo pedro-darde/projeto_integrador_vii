@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "moment": "^2.29.4",
     "sass": "^1.54.5",
     "sass-loader": "^13.0.2",
     "vue": "^2.6.14",
@@ -18,6 +19,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
+    "@mdi/font": "^7.0.96",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "vue-template-compiler": "^2.6.14"

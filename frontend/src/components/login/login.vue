@@ -3,8 +3,8 @@
     <v-container fluid fill-height class="main-container">
       <v-layout align-center justify-center>
         <v-flex xs8 sm8 md4>
-          <h3>Seja bem vindo</h3>
-          <div class="d-flex">
+          <h3 class="text-center">Seja bem vindo</h3>
+          <div class="d-flex mb-3">
             <v-img
               alt="Logo"
               class="img"
@@ -22,6 +22,9 @@
               type="text"
               placeholder="username"
               required
+              outlined
+              dense
+              :rules="emailRules"
             ></v-text-field>
 
             <v-text-field
@@ -31,6 +34,9 @@
               type="password"
               placeholder="password"
               required
+              outlined
+              :rules="passwordRules"
+              dense
             ></v-text-field>
             <v-btn type="submit" class="mt-4" color="primary" value="log in"
               >Login</v-btn

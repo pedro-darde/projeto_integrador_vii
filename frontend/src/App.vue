@@ -8,3 +8,13 @@
     </v-main>
   </v-app>
 </template>
+
+<script>
+import isLoggedIn from "./helpers/isLoggedIn";
+export default {
+  created() {
+    console.log('aqui')
+    if (!isLoggedIn()) this.$router.push("/login");
+  },
+};
+</script>
