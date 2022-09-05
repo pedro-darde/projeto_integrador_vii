@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Software } from "./Software";
 
 @Entity("requirements")
 export class Requirement {
@@ -25,4 +26,12 @@ export class Requirement {
 
   @Column()
   public active: Boolean;
+
+  @ManyToOne(() => Software)
+  @JoinColumn({ name: "software_id" })
+  public software: Software
+
+  @OneToOne(() => Requirement)
+  @JoinColumn({ name: 'requirement_id' })
+  public children: Requirement
 }

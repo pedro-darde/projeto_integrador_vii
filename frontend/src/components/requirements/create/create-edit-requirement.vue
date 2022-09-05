@@ -69,9 +69,7 @@
           <v-btn color="blue darken-1" text @click="dialog = false">
             Sair
           </v-btn>
-          <v-btn color="blue darken-1" text @click="save">
-            Salvar
-          </v-btn>
+          <v-btn color="blue darken-1" text @click="save"> Salvar </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -79,30 +77,38 @@
 </template>
 
 <script>
+import makeId from "../../../helpers/makeId";
 export default {
   props: {
     value: {
       type: Boolean,
     },
+    currentRequirement: {
+      type: Object,
+      default(rawProps  ) {
+        return {
+          id: makeId(5),
+          name: "",
+          description: "",
+          complexity: "",
+          priority: "",
+          version: 1,
+          type: "",
+        };
+      },
+    },
   },
   data() {
     return {
-      requirement: {
-        name: "",
-        description: "",
-        complexity: "",
-        priority: "",
-        version: 1,
-        type: "",
-      },
+      requirement: this.currentRequirement,
     };
   },
   computed: {
-    dialog: {
-      get() {
-        return this.value;
-      },
-      set(value) {
+      dialog: {
+          get() {
+             return this.value;
+          },
+           set(value) {
         this.$emit("input", value);
       },
     },
@@ -116,5 +122,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

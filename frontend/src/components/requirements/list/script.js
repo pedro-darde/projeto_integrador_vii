@@ -18,12 +18,16 @@ export default {
         // },
         { text: "Nome", value: "name" },
         { text: "Descrição", value: "description" },
+        { text: "", value: "actions", sortable: false },
       ],
     };
   },
   methods: {
     saveRequirement(requirement) {
       this.items = [...this.items, requirement];
+    },
+    deleteItem({ id }) {
+      this.items = this.items.filter((item) => item.id !== id);
     },
   },
 };
