@@ -35,12 +35,12 @@
           </v-textarea>
         </v-col>
       </v-row>
+      <v-col cols="12">
+        <h3>Requisitos</h3>
+      </v-col>
+      <v-divider></v-divider>
+      <list-requirements :requirements="requirements"></list-requirements>
     </v-form>
-    <v-col cols="12">
-      <h3>Requisitos</h3>
-    </v-col>
-    <v-divider></v-divider>
-    <list-requirements :requirements="requirements"></list-requirements>
   </v-container>
 </template>
 

@@ -1,8 +1,13 @@
 <template>
   <v-row no-gutters class="mt-4">
     <v-col cols="4">
-      <v-text-field label="Pesquisar">
-        <v-icon slot="append" color="blue"> mdi-magnify </v-icon>
+      <v-text-field
+        label="Pesquisar"
+        v-model="search"
+        append-icon="mdi-magnify"
+        single-line
+        hide-details
+      >
       </v-text-field>
     </v-col>
     <v-col cols="8" class="d-flex justify-end">
@@ -15,6 +20,7 @@
         :items="items"
         :items-per-page="5"
         class="elevation-1"
+        :search="search"
       ></v-data-table>
     </v-col>
   </v-row>

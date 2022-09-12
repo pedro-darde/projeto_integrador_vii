@@ -26,6 +26,7 @@ export default {
         { text: "Criado por", value: "created_by" },
         { text: "Ativo", value: "active" },
       ],
+      search: "",
     };
   },
   methods: {

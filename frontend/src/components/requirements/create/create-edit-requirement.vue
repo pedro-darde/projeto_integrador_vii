@@ -26,31 +26,40 @@
                 ></v-textarea>
               </v-col>
               <v-col cols="6">
-                <v-text-field
+                <v-select
                   label="Prioridade"
                   required
                   outlined
                   dense
+                  :items="priorityOptions"
+                  item-text="text"
+                  item-value="value"
                   v-model="requirement.priority"
-                ></v-text-field>
+                ></v-select>
               </v-col>
               <v-col cols="6">
-                <v-text-field
+                <v-select
                   label="Complexidade"
                   required
                   outlined
                   dense
+                  :items="complexityOptions"
+                  item-text="text"
+                  item-value="value"
                   v-model="requirement.complexity"
-                ></v-text-field>
+                ></v-select>
               </v-col>
               <v-col cols="6">
-                <v-text-field
+                <v-select
                   label="Tipo"
                   required
                   outlined
                   dense
+                  :items="typeOptions"
+                  item-text="text"
+                  item-value="value"
                   v-model="requirement.type"
-                ></v-text-field>
+                ></v-select>
               </v-col>
               <v-col cols="6">
                 <v-text-field
@@ -77,7 +86,6 @@
 </template>
 
 <script>
-import makeId from "../../../helpers/makeId";
 export default {
   props: {
     value: {
@@ -85,30 +93,34 @@ export default {
     },
     currentRequirement: {
       type: Object,
-      default(rawProps  ) {
-        return {
-          id: makeId(5),
-          name: "",
-          description: "",
-          complexity: "",
-          priority: "",
-          version: 1,
-          type: "",
-        };
-      },
     },
   },
   data() {
     return {
       requirement: this.currentRequirement,
+      complexityOptions: [
+        { value: 0, text: "Baixo" },
+        { value: 1, text: "Médio" },
+        { value: 2, text: "Alta" },
+      ],
+      priorityOptions: [
+        { value: 0, text: "Baixa" },
+        { value: 1, text: "Média" },
+        { value: 2, text: "Alta" },
+        { value: 3, text: "Muito Alta" },
+      ],
+      typeOptions: [
+        { value: 0, text: "Requisito Funcional (RF)" },
+        { value: 1, text: "Requisito Não Funcional (RNF)" },
+      ],
     };
   },
   computed: {
-      dialog: {
-          get() {
-             return this.value;
-          },
-           set(value) {
+    dialog: {
+      get() {
+        return this.value;
+      },
+      set(value) {
         this.$emit("input", value);
       },
     },
@@ -117,6 +129,11 @@ export default {
     save() {
       this.$emit("save", this.requirement);
       this.dialog = false;
+    },
+  },
+  watch: {
+    dialog() {
+      this.requirement = this.currentRequirement;
     },
   },
 };

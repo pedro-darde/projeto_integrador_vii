@@ -1,3 +1,4 @@
+import makeId from "../../../helpers/makeId";
 export default {
   props: {
     requirements: {
@@ -10,24 +11,45 @@ export default {
       items: this.requirements,
       open: false,
       headers: [
-        // {
-        //   text: "#",
-        //   align: "start",
-        //   sortable: true,
-        //   value: "id",
-        // },
         { text: "Nome", value: "name" },
         { text: "Descrição", value: "description" },
         { text: "", value: "actions", sortable: false },
       ],
+      currentRequirement: {
+        unique_identifier: makeId(5),
+        name: "",
+        description: "",
+        complexity: "",
+        priority: "",
+        version: 1,
+        type: "",
+      },
+      removedRequirements: [],
     };
   },
   methods: {
     saveRequirement(requirement) {
-      this.items = [...this.items, requirement];
+      const index = this.getIndex(requirement);
+
+      if (~index) {
+        Object.assign(this.items[index], requirement);
+      } else {
+        this.items.push(requirement);
+      }
     },
-    deleteItem({ id }) {
-      this.items = this.items.filter((item) => item.id !== id);
+    deleteItem(item) {
+      const indexRemove = this.getIndex(item);
+      this.items.splice(indexRemove, 1);
+      this.removedRequirements.push(item.id);
+    },
+    editItem(item) {
+      this.currentRequirement = JSON.parse(JSON.stringify(item));
+      this.open = true;
+    },
+    getIndex(requirement) {
+      return this.items.findIndex(
+        (item) => item.unique_identifier === requirement.unique_identifier
+      );
     },
   },
 };

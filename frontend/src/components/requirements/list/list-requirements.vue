@@ -17,10 +17,12 @@
             </v-icon>
             <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
           </template>
+          <template v-slot:no-data> Sem itens </template>
         </v-data-table>
       </v-col>
     </v-row>
     <create-edit-requirement
+      :currentRequirement="currentRequirement"
       v-model="open"
       @save="saveRequirement"
     ></create-edit-requirement>
