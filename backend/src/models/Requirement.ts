@@ -33,5 +33,5 @@ export class Requirement {
 
   @OneToOne(() => Requirement)
   @JoinColumn({ name: 'requirement_id' })
-  public children: Requirement
+  public child: Requirement
 }
