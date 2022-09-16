@@ -1,37 +1,41 @@
+import tokenMixin from "@/mixins/token-mixin";
+
 export default {
-  data() {
-    return {
-      items: [
-        {
-          id: "1",
-          description: "Qualquer descrição",
-          created_by: "Eu mesmo",
-          active: "Sim",
-        },
-        {
-          id: "2",
-          description: "Qualquer descrição 2",
-          created_by: "Eu mesmo 2",
-          active: "Não",
-        },
-      ],
-      headers: [
-        {
-          text: "#",
-          align: "start",
-          sortable: true,
-          value: "id",
-        },
-        { text: "Descrição", value: "description" },
-        { text: "Criado por", value: "created_by" },
-        { text: "Ativo", value: "active" },
-      ],
-      search: "",
-    };
-  },
-  methods: {
-    goToCreateProject() {
-      this.$router.push({ name: "projetos-criar" });
+    props: {
+        softwares: Array
     },
-  },
+    mixins: [tokenMixin],
+    data() {
+        return {
+            headers: [
+                {
+                    text: "#",
+                    align: "start",
+                    sortable: true,
+                    value: "id",
+                },
+                {text: "Nome", value: "name"},
+                {text: "Descrição", value: "description"},
+                {text: "Data de Início", value: "start_date"},
+                {text: "Date de fim", value: "end_date"},
+                {text: "Requisitos", value: "requirements"},
+                {text: "", value: "actions", sortable: false},
+            ],
+            search: "",
+        };
+    },
+    methods: {
+        goToCreateProject() {
+            this.$router.push({name: "projetos-criar"});
+        },
+        goToEditProject(id) {
+            this.$router.push(`/projetos/editar/${id}`)
+        }
+    },
+    computed: {
+        hasPermission() {
+            const token = this.getToken()
+            return token && token.profile === 'ADMIN'
+        }
+    }
 };

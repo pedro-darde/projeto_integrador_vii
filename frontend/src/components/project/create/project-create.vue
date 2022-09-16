@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-form v-model="formValid">
+    <v-form v-model="formValid" @submit.prevent="onCreate">
       <v-row>
         <v-col cols="12" md="4">
           <v-text-field
@@ -40,12 +40,13 @@
       </v-col>
       <v-divider></v-divider>
       <list-requirements :requirements="requirements"></list-requirements>
+      <v-row class="justify-end mt-2">
+        <v-btn type="submit" :disabled="!formValid" class="primary"> Salvar </v-btn>
+      </v-row>
     </v-form>
   </v-container>
 </template>
 
-<script src="./script.js">
-</script>
+<script src="./script.js"></script>
 
-<style scoped lang="scss" src="./styles.scss">
-</style>
+<style scoped lang="scss" src="./styles.scss"></style>

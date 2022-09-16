@@ -18,4 +18,17 @@ export default {
       requirements: [],
     };
   },
+  methods: {
+    onCreate() {
+      const data = {
+        name: this.name,
+        startDate: this.startDate,
+        endDate: this.endDate,
+        about: this.about,
+        requirements: this.requirements,
+      };
+
+      this.$emit("create", data);
+    },
+  },
 };

@@ -1,73 +1,87 @@
 <template>
-  <v-row justify="center">
+  <v-row justify="center" class="CreateEditRequirement">
     <v-dialog v-model="dialog" max-width="600px">
       <v-card>
         <v-card-title>
-          <span class="text-h5">Criar Requisito</span>
+          <v-row class="d-flex flex-column pa-2">
+            <span class="text-h5">{{ isEdit ? 'Editar' : 'Criar'}} Requisito</span>
+            <span v-if="!requirement.active" class="inactive-span">
+            Requisito inativo, apenas visualização!
+          </span>
+            <span v-if="dontHavePermission">
+              Modo visualização
+            </span>
+          </v-row>
+
         </v-card-title>
         <v-card-text>
           <v-container>
             <v-row>
               <v-col cols="12">
                 <v-text-field
-                  label="Nome"
-                  required
-                  outlined
-                  dense
-                  v-model="requirement.name"
+                    label="Nome"
+                    required
+                    outlined
+                    dense
+                    v-model="requirement.name"
+                    :disabled="!requirement.active || dontHavePermission"
                 ></v-text-field>
               </v-col>
               <v-col cols="12">
                 <v-textarea
-                  label="Descrição"
-                  outlined
-                  dense
-                  v-model="requirement.description"
+                    label="Descrição"
+                    outlined
+                    dense
+                    v-model="requirement.description"
+                    :disabled="!requirement.active || dontHavePermission"
                 ></v-textarea>
               </v-col>
               <v-col cols="6">
                 <v-select
-                  label="Prioridade"
-                  required
-                  outlined
-                  dense
-                  :items="priorityOptions"
-                  item-text="text"
-                  item-value="value"
-                  v-model="requirement.priority"
+                    label="Prioridade"
+                    required
+                    outlined
+                    dense
+                    :items="priorityOptions"
+                    item-text="text"
+                    item-value="value"
+                    v-model="requirement.priority"
+                    :disabled="!requirement.active || dontHavePermission"
                 ></v-select>
               </v-col>
               <v-col cols="6">
                 <v-select
-                  label="Complexidade"
-                  required
-                  outlined
-                  dense
-                  :items="complexityOptions"
-                  item-text="text"
-                  item-value="value"
-                  v-model="requirement.complexity"
+                    label="Complexidade"
+                    required
+                    outlined
+                    dense
+                    :items="complexityOptions"
+                    item-text="text"
+                    item-value="value"
+                    v-model="requirement.complexity"
+                    :disabled="!requirement.active || dontHavePermission"
                 ></v-select>
               </v-col>
               <v-col cols="6">
                 <v-select
-                  label="Tipo"
-                  required
-                  outlined
-                  dense
-                  :items="typeOptions"
-                  item-text="text"
-                  item-value="value"
-                  v-model="requirement.type"
+                    label="Tipo"
+                    required
+                    outlined
+                    dense
+                    :items="typeOptions"
+                    item-text="text"
+                    item-value="value"
+                    v-model="requirement.type"
+                    :disabled="!requirement.active || dontHavePermission"
                 ></v-select>
               </v-col>
               <v-col cols="6">
                 <v-text-field
-                  label="Versão"
-                  outlined
-                  readonly
-                  v-model="requirement.version"
-                  dense
+                    label="Versão"
+                    outlined
+                    readonly
+                    v-model="requirement.version"
+                    dense
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -78,65 +92,15 @@
           <v-btn color="blue darken-1" text @click="dialog = false">
             Sair
           </v-btn>
-          <v-btn color="blue darken-1" text @click="save"> Salvar </v-btn>
+          <v-btn color="blue darken-1" text @click="save" :disabled="!requirement.active || dontHavePermission"> Salvar</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
   </v-row>
 </template>
 
-<script>
-export default {
-  props: {
-    value: {
-      type: Boolean,
-    },
-    currentRequirement: {
-      type: Object,
-    },
-  },
-  data() {
-    return {
-      requirement: this.currentRequirement,
-      complexityOptions: [
-        { value: 0, text: "Baixo" },
-        { value: 1, text: "Médio" },
-        { value: 2, text: "Alta" },
-      ],
-      priorityOptions: [
-        { value: 0, text: "Baixa" },
-        { value: 1, text: "Média" },
-        { value: 2, text: "Alta" },
-        { value: 3, text: "Muito Alta" },
-      ],
-      typeOptions: [
-        { value: 0, text: "Requisito Funcional (RF)" },
-        { value: 1, text: "Requisito Não Funcional (RNF)" },
-      ],
-    };
-  },
-  computed: {
-    dialog: {
-      get() {
-        return this.value;
-      },
-      set(value) {
-        this.$emit("input", value);
-      },
-    },
-  },
-  methods: {
-    save() {
-      this.$emit("save", this.requirement);
-      this.dialog = false;
-    },
-  },
-  watch: {
-    dialog() {
-      this.requirement = this.currentRequirement;
-    },
-  },
-};
+<script src="./script.js">
+
 </script>
 
-<style></style>
+<style lang="scss" scoped src="./styles.scss"></style>

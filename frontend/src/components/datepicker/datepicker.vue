@@ -18,6 +18,7 @@
         v-on="on"
         outlined
         dense
+        :disabled="disabled"
       ></v-text-field>
     </template>
     <v-date-picker v-model="date" no-title scrollable locale="pt-br">

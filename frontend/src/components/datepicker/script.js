@@ -8,6 +8,10 @@ export default {
       type: String,
       required: true,
     },
+    disabled: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {

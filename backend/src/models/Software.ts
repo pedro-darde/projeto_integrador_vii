@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Requirement } from "./Requirement";
 
 @Entity("softwares")
 export class Software {
@@ -16,4 +17,7 @@ export class Software {
 
   @Column()
   public end_date: string;
+
+  @OneToMany(() => Requirement, (req) => req.software, { eager: true })
+  requirements: Requirement[];
 }

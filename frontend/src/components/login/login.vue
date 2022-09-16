@@ -38,9 +38,15 @@
               :rules="passwordRules"
               dense
             ></v-text-field>
-            <v-btn type="submit" class="mt-4" color="primary" value="log in"
+
+            <v-row class="d-flex flex-column">
+              <v-btn type="submit" class="mt-4 btn-login" color="primary" value="log in"
               >Login</v-btn
-            >
+              >
+              <a href="/usuario/criar" class="mt-2">
+                Ainda não possui conta ? Registre-se
+              </a>
+            </v-row>
           </form>
         </v-flex>
       </v-layout>
@@ -74,4 +80,7 @@ export default {
 </script>
 
 <style lang="scss" scoped src="./styles.scss">
+  .btn-login {
+    width: 85%!important;
+  }
 </style>

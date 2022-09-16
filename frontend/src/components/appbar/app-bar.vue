@@ -14,8 +14,9 @@
         Gestor de Projetos
       </v-toolbar-title>
       <v-spacer></v-spacer>
-
-      <v-btn color="primary" @click="goToProjetos"> Projetos </v-btn>
+      <v-btn color="primary" v-if="showButton" @click="goToProjetos" > Projetos </v-btn>
+      <v-btn color="primary" v-if="showButton" @click="goToUsuarios" class="ms-2" > Usuários </v-btn>
+      <v-btn color="secondary" v-if="showButton" @click="logout" class="ms-2"> Sair </v-btn>
     </v-app-bar>
 
     <v-navigation-drawer
