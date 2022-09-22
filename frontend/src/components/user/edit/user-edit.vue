@@ -4,43 +4,57 @@
       <v-row>
         <v-col cols="6">
           <v-text-field
-              v-model="user.name"
-              label="Nome"
-              outlined
-              :rules="nameRules"
-              dense>
+            v-model="user.name"
+            label="Nome"
+            outlined
+            :rules="nameRules"
+            :disabled="dontHavePermission"
+            dense
+          >
           </v-text-field>
         </v-col>
         <v-col cols="6">
           <v-text-field
-              v-model="user.email"
-              label="E-mail"
-              outlined
-              :rules="emailRules"
-              dense>
+            v-model="user.email"
+            label="E-mail"
+            outlined
+            :rules="emailRules"
+            :disabled="dontHavePermission"
+            dense
+          >
           </v-text-field>
         </v-col>
         <v-col cols="6">
-          <v-select :items="profileOptions" label="Perfil"
-                    required
-                    outlined
-                    dense
-                    item-text="text"
-                    item-value="value"
-                    v-model="user.profile"
+          <v-select
+            :items="profileOptions"
+            label="Perfil"
+            :disabled="dontHavePermission"
+            required
+            outlined
+            dense
+            item-text="text"
+            item-value="value"
+            v-model="user.profile"
           >
           </v-select>
         </v-col>
-        <v-btn :disabled="!formValid" type="submit"> Salvar</v-btn>
+        <v-btn :disabled="!formValid || dontHavePermission" type="submit">
+          Salvar</v-btn
+        >
+        <v-btn
+          v-if="dontHavePermission"
+          type="button"
+          class="btn"
+          color="error"
+          @click="back"
+        >
+          Voltar
+        </v-btn>
       </v-row>
     </v-form>
   </v-container>
 </template>
 
-<script src="./script.js">
+<script src="./script.js"></script>
 
-</script>
-
-<style scoped lang="scss" src="./styles.scss">
-
-</style>
+<style scoped lang="scss" src="./styles.scss"></style>
