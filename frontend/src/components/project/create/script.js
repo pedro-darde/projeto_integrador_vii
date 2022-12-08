@@ -1,6 +1,12 @@
 import { validateField } from "../../../helpers/requiredField";
 
 export default {
+  props: {
+    loading: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       formValid: false,

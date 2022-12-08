@@ -21,6 +21,7 @@
           :items-per-page="5"
           class="elevation-1"
           :search="search"
+          :loading="loading"
       >
         <template v-slot:item.actions="{ item }">
           <v-icon small class="mr-2" @click="goToEditUser(item.id)">

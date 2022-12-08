@@ -6,6 +6,10 @@ export default {
     user: {
       type: Object,
     },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {

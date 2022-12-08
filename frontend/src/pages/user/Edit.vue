@@ -2,7 +2,7 @@
   <v-container fluid class="d-flex flex-column">
     <h1 class="text-center p-4">{{ getPageTitle("Usuário") }}</h1>
     <v-divider></v-divider>
-    <user-edit @save="save" :user="user"></user-edit>
+    <user-edit @save="save" :user="user" :loading="loading"></user-edit>
   </v-container>
 </template>
 
@@ -16,16 +16,19 @@ export default {
   data() {
     return {
       user: {},
+      loading: false,
     };
   },
   methods: {
     async save(dados) {
-      let response;
+      this.loading = true;
       try {
-        response = await userService.edit(dados);
+        await userService.edit(dados);
         this.$router.push("/usuarios");
       } catch (e) {
         console.error(e);
+      } finally {
+        this.loading = false;
       }
     },
   },

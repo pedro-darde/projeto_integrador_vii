@@ -10,13 +10,16 @@ export default {
     requirements: {
       type: Array,
     },
+    onlyActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
       open: false,
       headers: [
         { text: "Nome", value: "name" },
-        { text: "Descrição", value: "description" },
         { text: "Versão", value: "version" },
         { text: "Ativo", value: "active" },
         { text: "", value: "actions", sortable: false },
@@ -24,7 +27,7 @@ export default {
       currentRequirement: {
         unique_identifier: makeId(5),
         name: "",
-        description: "",
+        description: `<h1>Realizar ______</h1><p><strong>Dado</strong><br /><strong>Quando</strong><br /><strong>Então</strong>`,
         complexity: "",
         priority: "",
         version: 1,
@@ -112,8 +115,13 @@ export default {
       };
     },
     generateReport() {
-      console.log(this.requirements);
       reportService.generateRequirementsReport(this.requirements);
+    },
+    changeRequirements() {
+      this.$emit("changeRequirements");
+    },
+    getActiveTextButton() {
+      return this.onlyActive ? "Mostrar inativos" : "Mostrar somente ativos";
     },
   },
   computed: {

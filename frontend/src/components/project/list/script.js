@@ -4,6 +4,10 @@ import { reportService } from "../../../services/report-service";
 export default {
   props: {
     softwares: Array,
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
   mixins: [tokenMixin],
   data() {
@@ -17,8 +21,8 @@ export default {
         },
         { text: "Nome", value: "name" },
         { text: "Descrição", value: "description" },
-        { text: "Data de Início", value: "start_date" },
-        { text: "Date de fim", value: "end_date" },
+        { text: "Início", value: "start_date" },
+        { text: "Fim", value: "end_date" },
         { text: "Requisitos", value: "requirements" },
         { text: "", value: "actions", sortable: false },
       ],
@@ -34,6 +38,9 @@ export default {
     },
     downloadReport() {
       reportService.generateSoftwareReport(this.softwares);
+    },
+    requirementActive(item) {
+      return item.requirements.filter((item) => item.active);
     },
   },
   computed: {

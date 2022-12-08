@@ -4,7 +4,7 @@
 
 <script>
 import isLoggedIn from "../helpers/isLoggedIn";
-import {sessionService} from "@/services/session-service";
+import { sessionService } from "@/services/session-service";
 import swalMixin from "@/mixins/swal-mixin";
 
 export default {
@@ -14,20 +14,20 @@ export default {
       let response;
 
       try {
-        response = await sessionService.login(payload)
-        this.$router.push('/')
+        response = await sessionService.login(payload);
+        this.$router.push("/");
       } catch (e) {
         if (e.response?.data) {
-          this.toastError(e.response.data.message)
+          this.toastError(e.response.data.message);
         }
       }
     },
   },
   mounted() {
-    if (isLoggedIn()) this.$router.push("/");
+    // console.log(isLoggedIn());
+    // if (isLoggedIn()) this.$router.push("/");
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>

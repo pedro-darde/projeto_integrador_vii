@@ -11,10 +11,10 @@
       </v-text-field>
     </v-col>
     <v-col cols="8" class="d-flex justify-end">
-      <v-btn @click="goToCreateProject" v-if="hasPermission">
+      <v-btn @click="goToCreateProject" v-if="hasPermission" class="mr-2">
         Criar Projeto</v-btn
       >
-      <v-btn @click="downloadReport"> Gerar PDF </v-btn>
+      <v-btn @click="downloadReport" color="error" :disabled="!softwares.length"> Gerar PDF </v-btn>
     </v-col>
 
     <v-col cols="12">
@@ -24,6 +24,7 @@
         :items-per-page="5"
         class="elevation-1"
         :search="search"
+        :loading="loading"
       >
         <template v-slot:item.start_date="{ item }">
           <span>{{ item.start_date | date }}</span>
@@ -33,7 +34,10 @@
         </template>
         <template v-slot:item.requirements="{ item }">
           <span v-if="item.requirements.length">
-            <v-chip v-for="requirement in item.requirements">
+            <v-chip
+              v-for="requirement in requirementActive(item)"
+              class="mb-2 ms-2"
+            >
               {{ requirement.name }}
             </v-chip>
           </span>

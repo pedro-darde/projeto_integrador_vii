@@ -22,6 +22,8 @@ router.afterEach((to, from) => {
   });
 });
 
+
+
 new Vue({
   vuetify,
   router,

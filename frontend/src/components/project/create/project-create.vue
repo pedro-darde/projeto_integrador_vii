@@ -40,8 +40,8 @@
       </v-col>
       <v-divider></v-divider>
       <list-requirements :requirements="requirements"></list-requirements>
-      <v-row class="justify-end mt-2">
-        <v-btn type="submit" :disabled="!formValid" class="primary"> Salvar </v-btn>
+      <v-row class="justify-end mt-2 mr-3">
+        <v-btn type="submit" :disabled="!formValid" class="primary" :loading="loading"> Salvar </v-btn>
       </v-row>
     </v-form>
   </v-container>

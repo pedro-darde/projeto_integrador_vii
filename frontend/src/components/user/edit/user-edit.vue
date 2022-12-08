@@ -38,7 +38,7 @@
           >
           </v-select>
         </v-col>
-        <v-btn :disabled="!formValid || dontHavePermission" type="submit">
+        <v-btn :disabled="!formValid || dontHavePermission" type="submit" :loading="loading">
           Salvar</v-btn
         >
         <v-btn

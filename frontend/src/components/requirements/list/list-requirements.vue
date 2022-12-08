@@ -1,11 +1,16 @@
 <template>
   <v-container fluid>
     <v-row class="mt-2">
-      <v-col cols="12 d-flex justify-end">
+      <v-col cols="2">
+        <v-btn color="info" @click="changeRequirements()">
+          {{ getActiveTextButton() }}</v-btn
+        >
+      </v-col>
+      <v-col cols="10 d-flex justify-end">
         <v-btn @click.stop="open = true" v-if="!dontHavePermission">
           Criar</v-btn
         >
-        <v-btn @click="generateReport"> Gerar PDF </v-btn>
+        <v-btn @click="generateReport" class="ms-2"> Gerar PDF </v-btn>
       </v-col>
       <v-col cols="12">
         <v-data-table
@@ -13,6 +18,7 @@
           :items="requirements"
           :items-per-page="5"
           class="elevation-1"
+          @click:row="editItem"
         >
           <template v-slot:item.active="{ item }">
             <span>{{ item.active ? "Ativo" : "Inativo" }}</span>

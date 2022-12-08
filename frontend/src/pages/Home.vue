@@ -3,13 +3,7 @@
 </template>
 
 <script>
-import isLoggedIn from "../helpers/isLoggedIn";
-export default {
-  mounted() {
-    if (!isLoggedIn()) this.$router.push("/login");
-  },
-};
+export default {};
 </script>
 
-<style>
-</style>
+<style></style>
